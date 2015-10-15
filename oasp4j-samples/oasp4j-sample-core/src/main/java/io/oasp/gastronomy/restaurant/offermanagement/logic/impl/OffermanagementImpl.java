@@ -16,10 +16,14 @@ import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductFilter;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductSearchCriteriaTo;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.ProductSortBy;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SideDishEto;
+import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialEto;
+import io.oasp.gastronomy.restaurant.offermanagement.logic.api.to.SpecialSearchCriteriaTo;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.usecase.UcFindOffer;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.usecase.UcFindProduct;
+import io.oasp.gastronomy.restaurant.offermanagement.logic.api.usecase.UcFindSpecial;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.usecase.UcManageOffer;
 import io.oasp.gastronomy.restaurant.offermanagement.logic.api.usecase.UcManageProduct;
+import io.oasp.gastronomy.restaurant.offermanagement.logic.api.usecase.UcManageSpecial;
 import io.oasp.module.jpa.common.api.to.PaginatedListTo;
 
 import java.sql.Blob;
@@ -48,6 +52,10 @@ public class OffermanagementImpl extends AbstractComponentFacade implements Offe
   private UcFindProduct ucFindProduct;
 
   private UcManageProduct ucManageProduct;
+
+  private UcFindSpecial ucFindSpecial;
+
+  private UcManageSpecial ucManageSpecial;
 
   /**
    * The constructor.
@@ -249,6 +257,54 @@ public class OffermanagementImpl extends AbstractComponentFacade implements Offe
   public void setUcManageProduct(UcManageProduct ucManageProduct) {
 
     this.ucManageProduct = ucManageProduct;
+  }
+
+  @Override
+  public SpecialEto findSpecial(Long id) {
+
+    return this.ucFindSpecial.findSpecial(id);
+  }
+
+  @Override
+  public PaginatedListTo<SpecialEto> findSpecialEtos(SpecialSearchCriteriaTo criteria) {
+
+    return this.ucFindSpecial.findSpecialEtos(criteria);
+  }
+
+  @Override
+  public SpecialEto saveSpecial(SpecialEto special) {
+
+    return this.ucManageSpecial.saveSpecial(special);
+  }
+
+  @Override
+  public boolean deleteSpecial(Long id) {
+
+    return this.ucManageSpecial.deleteSpecial(id);
+  }
+
+  /**
+   * Sets the field 'ucFindSpecial'.
+   *
+   * @param ucFindSpecial New value for ucFindSpecial
+   */
+  @Inject
+  @UseCase
+  public void setUcFindSpecial(UcFindSpecial ucFindSpecial) {
+
+    this.ucFindSpecial = ucFindSpecial;
+  }
+
+  /**
+   * Sets the field 'ucManageSpecial'.
+   *
+   * @param ucManageSpecial New value for ucManageSpecial
+   */
+  @Inject
+  @UseCase
+  public void setUcManageSpecial(UcManageSpecial ucManageSpecial) {
+
+    this.ucManageSpecial = ucManageSpecial;
   }
 
 }

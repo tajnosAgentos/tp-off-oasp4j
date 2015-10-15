@@ -52,6 +52,7 @@ public class SpecialDaoImpl extends ApplicationDaoImpl<SpecialEntity> implements
       query.where(Alias.$(special.getOfferId()).eq(offer));
     }
 
+    // TODO zmoana
     // WeeklyPeriodEmbeddable activePeriod = criteria.getActivePeriod();
     // if (activePeriod != null) {
     // query.where(Alias.$(special.getActivePeriod()).eq(activePeriod));
@@ -79,7 +80,6 @@ public class SpecialDaoImpl extends ApplicationDaoImpl<SpecialEntity> implements
       if (endingHour != null) {
         query.where(Alias.$(special.getActivePeriod().getEndingHour()).loe(endingHour));
       }
-
     }
 
     Money specialPrice = criteria.getSpecialPrice();
